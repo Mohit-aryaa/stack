@@ -1,0 +1,20 @@
+.question-wrapper {
+    margin: 25px 0;
+    .avatar-wrapper {
+        .avatar-image  {
+            img {
+                height: 45px;
+                width: 45px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+.font-500 {
+    font-weight: 500;
+}
+
+::ng-deep .mat-simple-snackbar {
+    justify-content: center!important;
+}
+

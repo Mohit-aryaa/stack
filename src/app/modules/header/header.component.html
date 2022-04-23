@@ -1,0 +1,48 @@
+<section class="border-top border-bottom w-100 ">
+    <div class="container ">
+        <nav class="navbar navbar-expand-lg py-lg-0 navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand me-5" href="#"><img src="favicon.ico" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"  (click)="showNavbar()" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse navbar-wrapper pt-lg-0 pt-3 d-block bg-white" id="navbarSupportedContent" [style.left.%]="navbarShow ? '3' : '-70'">
+               
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item d-flex align-items-center">
+                    <form class="d-flex ">
+                        <button class="btn  d-flex" type="submit">
+                            <mat-icon >search</mat-icon>
+                        </button>
+                        <input class="form-control me-2 border-0 bg-none" type="search" placeholder="Type to search" aria-label="Search">
+                    </form>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-dark " [routerLinkActive]="['active']" routerLink="/profile" (click)="profile()">My Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Browse</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Podcast</a>
+                  </li>
+                  <li class="nav-item" [routerLinkActive]="['active']" routerLink="/discussions">
+                    <a class="nav-link text-dark " href="#">Discussions</a>
+                  </li>
+                  <li class="nav-item" style="margin-right:8rem;">
+                  </li>
+                  
+                  <li class="nav-item" *ngIf="!signedIn">
+                    <span class="nav-link text-dark" style="cursor: pointer;"  (click)="showSignInform()">Sign In</span>
+                  </li>
+                  <li class="nav-item" *ngIf="signedIn">
+                    <span class="nav-link text-dark" style="cursor: pointer;" (click)="signOut()">Sign Out</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </div>
+</section>
+<div class="navbar-overlay" [style.display]="navbarShow ? 'block' : 'none'" (click)="navbarShow = false"></div>  
+

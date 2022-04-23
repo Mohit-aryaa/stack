@@ -1,0 +1,92 @@
+
+<app-header></app-header>
+<section class="w-100 spacer my-5 " ></section>
+<section>
+  <div class="container main-wrapper">
+    <div class="row">
+      <div class="col-lg-3">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-lg-9">
+        <div class="profile" *ngFor="let item of userData">
+            <div class="card p-5 shadow border-0 text-white">
+                <div class="mb-5 h4 font-500">My Profile</div>
+                <img class="w-100 mb-4 mx-auto d-block" [src]="item.avatar || '/assets/images/default-user-icon.jpg'" alt="">
+
+                <div class="mb-4">
+                    <label for="" class="h6 font-500">Name:</label>
+                    <Div>{{item.name}}</Div>
+                </div>
+                <div class="mb-4">
+                    <label for="" class="h6 font-500">Email:</label>
+                    <Div>{{item.email}}</Div>
+                </div>
+                <div class="mb-5">
+                    <label for="" class="h6 font-500">Designation:</label>
+                    <Div>{{item.designation}}</Div>
+                </div>
+                <div>
+                    <button mat-raised-button type="button" class=" rounded-pill"(click)="openForm()" >
+                        Update
+                    </button>
+                </div>
+            </div>
+                
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="form-wrapper" id="formWrapper" >
+    
+    <div class="updateForm-wrapper-inner  p-4  position-relative" >
+      <div class="btn closeSignUp position-absolute" (click)="closeForm()"><i class="fa fa-times ms-2 mt-2"></i></div>
+      <div class="title py-lg-3 font-500 fs-5 mb-3" >Add new account </div>
+      <form autocomplete="off" class="updateForm" [formGroup]="updateForm">
+          <div class="mb-4 position-relative">
+              <div style="height: 70px; width:70px; border:1px dashed #3f51b5" (click)="selectAvatar()" class="mx-auto mb-2 rounded-circle d-flex align-items-center justify-content-center align-items-center position-relative overflow-hidden">
+                  <i class="fa fa-image text-primary " style="font-size: 24px; " *ngIf="!showPreview" ></i>
+                  <img [src]="showPreviewUrl" class="w-100" style="object-fit: cover;" alt="" *ngIf="showPreview">
+              </div>
+              <div class="text-primary text-center" (click)="selectAvatar()"><small>Select image</small></div>
+          </div>
+          <div class="mb-4 position-relative d-none" >
+            <i class="fa fa-envelope form-icons text-primary"></i>
+            <label for="exampleInputEmail1" class="form-label text-primary">Email address</label>
+            <input type="file" name="avatar" id="avatar" class="form-control"  (change)="selectImage($event)"  > 
+          </div>
+          <div class="mb-4 position-relative">
+            <i class="fa fa-user form-icons text-primary"></i>
+            <label for="exampleInputPassword1" class="form-label text-primary">Name</label>
+            <input type="text" class="form-control"  placeholder="Enter name" formControlName="name">
+        </div>
+          <div class="mb-4 position-relative">
+            <i class="fa fa-envelope form-icons text-primary"></i>
+            <label for="exampleInputEmail1" class="form-label text-primary">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" formControlName="email"> 
+          </div>
+          <div class="mb-4 position-relative">
+            <i class="fa fa-lock form-icons text-primary"></i>
+            <label for="exampleInputPassword1" class="form-label text-primary">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="password" formControlName="password">
+          </div>
+          <div class="mb-4 position-relative">
+              <i class="fa fa-tasks form-icons text-primary"></i>
+              <label for="exampleInputPassword1" class="form-label text-primary">Designation</label>
+              <input type="text" class="form-control"  placeholder="Enter designation" formControlName="designation">
+          </div>
+            <button  type="submit" class="btn rounded-pill mb-3  w-100 btn-lg fs-6 mb-3" (click)="updateProfile()" [disabled]="isUpdate">
+              <span *ngIf="isUpdate">Updating... <i class="fa fa-circle-o-notch fa-spin"></i></span>
+              <span *ngIf="!isUpdate" >Update Account</span>
+            </button>
+        </form>
+  </div>
+
+</div>
+
+
+
+
+
+<app-sign-in></app-sign-in>

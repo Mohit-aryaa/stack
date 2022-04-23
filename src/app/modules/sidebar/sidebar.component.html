@@ -1,0 +1,14 @@
+<div class="w-100 sidebar-wrapper">
+    <button mat-raised-button color="primary" class="rounded-pill d-lg-none d-block" (click)="openFilter()">Filter</button>
+    <ul class="sidebar" [style.left.%]="filterOpen ? '3' : '-70'">
+        <li class="rounded-pill" [routerLinkActive]="['active']" routerLink="/home" ><i class="fa fa-home me-3" aria-hidden="true" ></i>Home</li>
+        <li class=" rounded-pill" [routerLinkActive]="['active']" routerLink="/my-questions" (click)="seeQuestions()"><i class="fa fa-question me-3" aria-hidden="true"></i>My Questions</li>
+        <li class="rounded-pill"><i class="fa fa-share me-3" aria-hidden="true"></i>My Participation</li>
+        <li class="rounded-pill"><i class="fa fa-times-circle me-3" aria-hidden="true"></i> Unsolved</li>
+        <li class="rounded-pill"><i class="fa fa-check-circle me-3" aria-hidden="true"></i> Solved</li>
+        <li class="rounded-pill" [routerLinkActive]="['active']" routerLink="/ask" (click)="askQuestion()"><i class="fa fa-question-circle me-3" aria-hidden="true" ></i> Ask</li>
+      </ul>
+      
+
+    <div class="sidebar-overlay" [style.display]="filterOpen ? 'block' : 'none'" (click)="filterOpen = false"></div>
+</div>
