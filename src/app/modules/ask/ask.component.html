@@ -13,8 +13,8 @@
             <div>
                 <form class="questionForm" [formGroup]="questionForm" autocomplete="off">
                     <div class="mb-4 " >
-                        <label  class="form-label">Title</label>
-                        <input type="text" name="title" id="title" class="form-control" formControlName="title" placeholder="Enter title"> 
+                        <label  for="title" class="form-label">Title</label>
+                        <input type="text" name="title" id="title" class="form-control" formControlName="title" placeholder="Enter title">
                         <input type="text" class="form-control d-none" name="email" [(ngModel)]="email" formControlName="email">
                         <div *ngIf="title.invalid && (title.dirty || title.touched)"
                             class="alert alert-danger">
@@ -22,19 +22,21 @@
                             <div *ngIf="title.errors?.['required']">
                                 Title is required.
                             </div>
-        
+
                         </div>
                     </div>
                     <div class="mb-4 " >
-                        <label class="form-label">Question</label>
-                        <angular-editor id="question" formControlName="question" class="question"  [config]="editorConfig"></angular-editor>
+                        <label for="question" class="form-label">Question</label>
+                        <!-- <angular-editor id="question" formControlName="question" class="question"  [config]="editorConfig"></angular-editor> -->
+                        <ckeditor [editor]="Editor" name="question" formControlName="question" id="question" [config]="editorConfig" ngDefaultControl></ckeditor>
+
                         <div *ngIf="question.invalid && (question.dirty || question.touched)"
                             class="alert alert-danger">
 
                             <div *ngIf="question.errors?.['required']">
                                 Question is required.
                             </div>
-        
+
                         </div>
                     </div>
 

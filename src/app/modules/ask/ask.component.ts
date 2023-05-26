@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { PostsService } from 'src/app/services/posts.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MyCustomUploadAdapterPlugin from '../../shared/ckeditor-adapter-base64';
 
 @Component({
   selector: 'app-ask',
@@ -12,10 +14,15 @@ import { PostsService } from 'src/app/services/posts.service';
 export class AskComponent implements OnInit {
   questionForm:any = FormGroup;
   email:any;
+  public Editor = ClassicEditor;
+
+  editorConfig = {
+    extraPlugins: [MyCustomUploadAdapterPlugin, ]
+  }
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private postsService: PostsService
+    private postsService: PostsService,
   ) { }
 
   ngOnInit(): void {
@@ -29,52 +36,6 @@ export class AskComponent implements OnInit {
 
   get title() { return this.questionForm.get('title'); }
   get question() { return this.questionForm.get('question'); }
-
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '200px',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      {class: 'arial', name: 'Arial'},
-      {class: 'times-new-roman', name: 'Times New Roman'},
-      {class: 'calibri', name: 'Calibri'},
-      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-    ],
-    customClasses: [
-    {
-      name: 'quote',
-      class: 'quote',
-    },
-    {
-      name: 'redText',
-      class: 'redText'
-    },
-    {
-      name: 'titleText',
-      class: 'titleText',
-      tag: 'h1',
-    },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-  };
 
 
   submit() {

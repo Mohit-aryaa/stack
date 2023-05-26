@@ -9,6 +9,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MyQuestionsComponent } from './my-questions/my-questions.component';
+import { ImagefilterPipe } from '../pipe/imagefilter.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -17,6 +19,8 @@ import { MyQuestionsComponent } from './my-questions/my-questions.component';
     SignInComponent,
     HeaderComponent,
     SidebarComponent,
+    ImagefilterPipe,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,8 @@ import { MyQuestionsComponent } from './my-questions/my-questions.component';
   exports: [
     SignInComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ImagefilterPipe
   ]
 })
 export class SharedModule { }

@@ -24,6 +24,7 @@ export class MyProfileComponent implements OnInit {
     this.updateForm = this.formBuilder.group({
       name : ['', [Validators.required]],
       email: ['', [Validators.required]],
+      about:['', [Validators.required]],
       password:['', [Validators.required]],
       designation: ['', [Validators.required]]
     })
@@ -67,7 +68,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   isUpdate:boolean = false;
-  
+
 
   updateProfile() {
     this.updateForm.markAllAsTouched();
@@ -86,6 +87,7 @@ export class MyProfileComponent implements OnInit {
     formData.append('id', id);
     formData.append('name', this.updateForm.value.name);
     formData.append('email', this.updateForm.value.email);
+    formData.append('about', this.updateForm.value.about);
     formData.append('password', this.updateForm.value.password);
     formData.append('designation', this.updateForm.value.designation);
     console.log('formdata',formData)

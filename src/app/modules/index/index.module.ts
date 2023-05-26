@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from '../shared.module';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     IndexComponent,
@@ -25,6 +25,7 @@ import { SharedModule } from '../shared.module';
     MatSnackBarModule,
     SharedModule,
     NgxPaginationModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(
       [
         { path: '', component: IndexComponent }

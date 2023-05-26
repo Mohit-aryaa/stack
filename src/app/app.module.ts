@@ -9,10 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
+import { ImagefilterPipe } from './pipe/imagefilter.pipe';
+import { RouterModule } from '@angular/router';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,9 @@ import {MatIconModule} from '@angular/material/icon';
     NgbModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule 
+    HttpClientModule,
+    RouterModule,
+    LoadingBarRouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

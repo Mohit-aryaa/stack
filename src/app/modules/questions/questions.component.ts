@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { environment } from 'src/environments/environment';
 import { PostsService } from '../../services/posts.service';
+import MyCustomUploadAdapterPlugin from '../../shared/ckeditor-adapter-base64';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-questions',
@@ -24,7 +26,13 @@ export class QuestionsComponent implements OnInit {
     private changeDetectionRef: ChangeDetectorRef,
   ) { }
 
-  
+  public Editor = ClassicEditor;
+
+  editorConfig = {
+    extraPlugins: [MyCustomUploadAdapterPlugin ]
+  }
+
+
 
   ngOnInit(): void {
     this.checkToken = localStorage.getItem('token');
@@ -50,59 +58,59 @@ export class QuestionsComponent implements OnInit {
           if(element.liked) {
             likeBtn.setAttribute("color", "primary")
             likeBtn.classList.add('mat-primary')
-          } 
+          }
         }
       }, 500);
     }, (errors:any) => {
-      
+
     })
   }
 
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '200px',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      {class: 'arial', name: 'Arial'},
-      {class: 'times-new-roman', name: 'Times New Roman'},
-      {class: 'calibri', name: 'Calibri'},
-      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-    ],
-    customClasses: [
-    {
-      name: 'quote',
-      class: 'quote',
-    },
-    {
-      name: 'redText',
-      class: 'redText'
-    },
-    {
-      name: 'titleText',
-      class: 'titleText',
-      tag: 'h1',
-    },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-  };
+  // editorConfig: AngularEditorConfig = {
+  //   editable: true,
+  //   spellcheck: true,
+  //   height: 'auto',
+  //   minHeight: '200px',
+  //   maxHeight: 'auto',
+  //   width: 'auto',
+  //   minWidth: '0',
+  //   translate: 'yes',
+  //   enableToolbar: true,
+  //   showToolbar: true,
+  //   placeholder: 'Enter text here...',
+  //   defaultParagraphSeparator: '',
+  //   defaultFontName: '',
+  //   defaultFontSize: '',
+  //   fonts: [
+  //     {class: 'arial', name: 'Arial'},
+  //     {class: 'times-new-roman', name: 'Times New Roman'},
+  //     {class: 'calibri', name: 'Calibri'},
+  //     {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+  //   ],
+  //   customClasses: [
+  //   {
+  //     name: 'quote',
+  //     class: 'quote',
+  //   },
+  //   {
+  //     name: 'redText',
+  //     class: 'redText'
+  //   },
+  //   {
+  //     name: 'titleText',
+  //     class: 'titleText',
+  //     tag: 'h1',
+  //   },
+  //   ],
+  //   uploadUrl: 'v1/image',
+  //   uploadWithCredentials: false,
+  //   sanitize: true,
+  //   toolbarPosition: 'top',
+  //   toolbarHiddenButtons: [
+  //     ['bold', 'italic'],
+  //     ['fontSize']
+  //   ]
+  // };
 
   showAnswerBox() {
     let localItem= localStorage.getItem("token");
@@ -152,7 +160,7 @@ export class QuestionsComponent implements OnInit {
         });
       })
     }
- 
+
   }
 
   isAnswersLoading:boolean = true;
@@ -203,7 +211,7 @@ export class QuestionsComponent implements OnInit {
     }
     console.log(data)
     this.postService.likePost(data).subscribe((res:any)=> {
-      
+
       if(res.success == 1) {
         let id = 'like'+event;
         let like:any = document.getElementById(id)

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './modules/auth/auth.guard';
 
+
+
 const routes: Routes = [
   {path: 'home',  loadChildren: () => import('./modules/index/index.module').then(m=>m.IndexModule)},
   {path: 'home/:page',  loadChildren: () => import('./modules/index/index.module').then(m=>m.IndexModule)},
@@ -10,7 +12,11 @@ const routes: Routes = [
   {path: 'profile', loadChildren:() => import('./modules/my-profile/my-profile.module').then(m=>m.MyProfileModule), canActivate: [AuthGuard]},
   {path: 'questions/:slug', loadChildren:() => import('./modules/questions/questions.module').then(m=>m.QuestionsModule) },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'admin', children:[
+      {path:'', loadChildren: () => import('./admin/index/index.module').then(m=>m.IndexModule)}
+    ], canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

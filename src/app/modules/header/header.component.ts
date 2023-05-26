@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   signedIn:boolean;
   constructor(
     private _snackBar: MatSnackBar
-  ) { 
+  ) {
     let localItem= localStorage.getItem("token");
     this.isLogin = localStorage.getItem("email");
     if(localItem!== null) {
@@ -24,10 +24,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
   navbarShow:boolean = false;
-  showNavbar() {
+  toggleNavbar() {
     this.navbarShow = !this.navbarShow;
     if(this.navbarShow) {
       document.body.style.overflow = 'hidden';

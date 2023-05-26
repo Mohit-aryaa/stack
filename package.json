@@ -21,14 +21,22 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@ckeditor/ckeditor5-angular": "^4.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^34.1.0",
+    "@ckeditor/ckeditor5-upload": "^34.1.0",
     "@kolkov/angular-editor": "^2.0.0",
     "@ng-bootstrap/ng-bootstrap": "^12.0.2",
+    "@ngx-loading-bar/core": "^6.0.2",
+    "@ngx-loading-bar/router": "^6.0.2",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",
-    "ngx-editor": "^12.2.2",
+    "ng2-slim-loading-bar": "^4.0.0",
     "ngx-pagination": "^5.1.1",
-    "ngx-quill": "^14.3.0",
+    "ngx-progressbar": "^9.0.0",
+    "ngx-quill": "^16.2.1",
+    "ngx-slim-loading-bar": "^1.0.1",
     "rxjs": "~7.5.0",
+    "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -44,6 +52,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ngx-spec": "^2.0.0",
     "typescript": "~4.6.2"
   }
 }

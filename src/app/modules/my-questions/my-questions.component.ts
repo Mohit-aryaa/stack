@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MyQuestionsComponent implements OnInit {
 
- 
+
   posts: any = [];
   checkToken: any;
   collection: any = [];
@@ -31,7 +31,7 @@ export class MyQuestionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
     this.checkToken = localStorage.getItem('token');
     let email = localStorage.getItem('email')
     this.route.queryParams.subscribe((params: any) => {
@@ -51,15 +51,15 @@ export class MyQuestionsComponent implements OnInit {
     });
   }
 
-
+  isLoading:boolean=true;
   getPosts() {
-    console.log('getPosts')
     let data: any = {
       id: localStorage.getItem('email'),
       page: 1,
       itemsPerPage: this.itemsPerPage
     }
     this.postsService.getPosts(data).subscribe((res: any) => {
+      this.isLoading = false;
       this.collection = res.data;
       this.totalItems = res.total;
       setTimeout(() => {
@@ -73,17 +73,17 @@ export class MyQuestionsComponent implements OnInit {
           }
         }
       }, 500);
-      console.log(this.collection)
     }, (errors: any) => {
       console.log(errors)
+      this.isLoading = false;
     })
   }
 
 
 
   pageChanged(page: any) {
-    this.router.navigate(['questions'], { queryParams: { page: page } });
-    console.log('pagination')
+    this.isLoading = true;
+    this.router.navigate(['my-questions'], { queryParams: { page: page } });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     let data: any = {
       id: localStorage.getItem('email'),
@@ -91,6 +91,7 @@ export class MyQuestionsComponent implements OnInit {
       itemsPerPage: this.itemsPerPage
     }
     this.postsService.getMyQuestion(data).subscribe((res: any) => {
+      this.isLoading = false;
       this.collection = res.data;
       this.totalItems = res.total;
       setTimeout(() => {
@@ -104,8 +105,8 @@ export class MyQuestionsComponent implements OnInit {
           }
         }
       }, 500);
-      console.log(this.collection)
     }, (errors: any) => {
+      this.isLoading = false;
       console.log(errors)
     })
   }
@@ -123,7 +124,6 @@ export class MyQuestionsComponent implements OnInit {
       email: localStorage.getItem('email')
     }
     this.postsService.likePost(data).subscribe((res: any) => {
-      console.log(res)
       if (res.success == 1) {
         let id = 'like' + event;
         let like: any = document.getElementById(id)
@@ -146,7 +146,7 @@ export class MyQuestionsComponent implements OnInit {
     })
   }
 
-  
+
 
 
 }

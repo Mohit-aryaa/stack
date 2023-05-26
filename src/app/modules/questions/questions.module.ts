@@ -11,12 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 
 @NgModule({
   declarations: [
-    QuestionsComponent
+    QuestionsComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     AngularEditorModule,
     MatProgressSpinnerModule,
+    CKEditorModule,
     RouterModule.forChild(
       [
         { path: '', component: QuestionsComponent }

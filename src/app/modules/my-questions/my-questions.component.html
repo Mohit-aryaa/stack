@@ -7,21 +7,24 @@
       <div class="col-lg-3">
         <app-sidebar></app-sidebar>
       </div>
-      <div class="col-lg-9">
-        <div *ngIf="collection.length == 0" class="text-center my-5">No Questions? yet Ask a question</div>
+      <div class="col-lg-9"><div class="w-100 d-flex justify-content-center align-items-center" style="min-height: 70vh;" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div *ngIf="!isLoading">
+        <div *ngIf="collection.length == 0" class="text-center my-5">No Questions yet? Ask a question</div>
         <div class="post border-bottom" *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage , currentPage: pageNumber, totalItems: totalItems }">
             <div class="heading h2 mb-4"  [routerLink]="['/questions', item.slug]">{{item.title}}</div>
             <div class="avatar-wrapper d-flex align-items-center mb-4">
               <div class="avatar-image pe-3">
-                <img [src]="imagePrefxeUrl+item.avatar || 'assets/images/default-user-icon.jpg'" alt="" class="rounded-circle">
+                <img [src]="item.avatar | imagefilter" alt="" class="rounded-circle">
               </div>
               <div class="avatar-data">
                 <div class="avatar-name h6 mb-0 pb-1">{{item.name}}</div>
                 <div class="avatar-status font-500 text-secondary">{{item.posted_time}}</div>
               </div>
-              
+
             </div>
-            
+
             <div class="mb-4 question " [innerHtml]="item.question">
             </div>
 
@@ -44,7 +47,7 @@
             <div class="my-4 fs-6 font-500">{{item.answers}}</div>
 
         </div>
-        <pagination-controls    
+        <pagination-controls
           [responsive]="true"
           (pageChange)="pageChanged(pageNumber = $event)"
           (pageBoundsCorrection)="pageChanged(pageNumber = $event)"
@@ -56,7 +59,8 @@
           screenReaderPaginationLabel="Pagination"
           screenReaderPageLabel="page"
           screenReaderCurrentLabel="You're on page">
-      </pagination-controls>
+        </pagination-controls>
+        </div>
       </div>
     </div>
   </div>

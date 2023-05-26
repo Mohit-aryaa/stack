@@ -51,7 +51,7 @@ export class PostsService {
   likePost(payload:any) {
     return this.http.post(this.api+ '?method=likePost', payload)
   }
-  
+
   likeAnswer(payload:any) {
     return this.http.post(this.api+ '?method=likeAnswer', payload)
   }
@@ -63,6 +63,4 @@ export class PostsService {
   getMyQuestion(payload:any) {
     return this.http.get(this.api+`?method=getData&page=${payload.page}&size=${payload.itemsPerPage}&userid=${payload.id}`)
   }
-
- 
 }

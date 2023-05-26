@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/stackoverflow'
+  apiUrl: 'https://dev.mohitarya.in/stackoverflow/'
 };
 
 /*

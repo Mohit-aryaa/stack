@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   pageNumber: any;
   itemsPerPage = 4;
   totalItems: any;
+  isLoading:boolean = true;
   imagePrefxeUrl:any = `${environment.apiUrl}/uploads/`;
 
   constructor(
@@ -28,7 +29,7 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
     this.checkToken = localStorage.getItem('token');
     let email = localStorage.getItem('email')
     this.route.queryParams.subscribe((params: any) => {
@@ -50,13 +51,13 @@ export class IndexComponent implements OnInit {
 
 
   getPosts() {
-    console.log('getPosts')
     let data: any = {
-      id: localStorage.getItem('email'),
+      // id: localStorage.getItem('email'),
       page: 1,
       itemsPerPage: this.itemsPerPage
     }
     this.postsService.getPosts(data).subscribe((res: any) => {
+      this.isLoading = false;
       this.collection = res.data;
       this.totalItems = res.total;
       setTimeout(() => {
@@ -70,8 +71,8 @@ export class IndexComponent implements OnInit {
           }
         }
       }, 500);
-      console.log(this.collection)
     }, (errors: any) => {
+      this.isLoading = false;
       console.log(errors)
     })
   }
@@ -79,15 +80,15 @@ export class IndexComponent implements OnInit {
 
 
   pageChanged(page: any) {
+    this.isLoading = true;
     this.router.navigate([''], { queryParams: { page: page } });
-    console.log('pagination')
     window.scrollTo({ top: 0, behavior: 'smooth' });
     let data: any = {
-      id: localStorage.getItem('email'),
       page: page,
       itemsPerPage: this.itemsPerPage
     }
     this.postsService.getPosts(data).subscribe((res: any) => {
+      this.isLoading = false;
       this.collection = res.data;
       this.totalItems = res.total;
       setTimeout(() => {
@@ -101,8 +102,8 @@ export class IndexComponent implements OnInit {
           }
         }
       }, 500);
-      console.log(this.collection)
     }, (errors: any) => {
+      this.isLoading = false;
       console.log(errors)
     })
   }
@@ -120,7 +121,6 @@ export class IndexComponent implements OnInit {
       email: localStorage.getItem('email')
     }
     this.postsService.likePost(data).subscribe((res: any) => {
-      console.log(res)
       if (res.success == 1) {
         let id = 'like' + event;
         let like: any = document.getElementById(id)

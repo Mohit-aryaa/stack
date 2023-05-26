@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { QuestionsComponent } from '../questions/questions.component';
 import { SharedModule } from '../shared.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared.module';
       }
       ]
     ),
+    MatProgressSpinnerModule
   ]
 })
 export class MyQuestionsModule { }

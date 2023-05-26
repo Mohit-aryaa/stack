@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SignupService {
 
-  
   api :string = `${environment.apiUrl}/signupapi.php` ;
   constructor(
     private http: HttpClient
